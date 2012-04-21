@@ -1,26 +1,27 @@
 require 'json'
 f = open(ARGV[0])
 def c(t)
-t.downcase.gsub('/[\\(\\)\\.\\/:,;/', '').gsub('?',' ?').gsub('!',' !').gsub('-',' - ')
+t.downcase.gsub(/[\\(\\)\\.:,;]/,'').gsub('?',' ?').gsub('!',' !').gsub('-',' - ')
 end
-@i = {}
-f.each do |l|
-i = l.index(':')
-@i[l[0..i-1]]=c(l[i+2..-2])
+@i={}
+f.each_line do |line|
+i = line.index(':')
+@i[line[0..i-2]] = c(line[i+2..-2])
 end
-def lu(f)
+def u(m)
 s = []
 @i.each_pair do |k,v|
 g = true
-f.each do |w|
+m.each do |w|
 g = false unless v[w]
 end
 s << k if g
 end
 s
 end
-while (true)
+while true
 print '>'
-$stdout.flush
-$stdout.write JSON.generate(lu($stdin.gets.split.map {|i| c(i)}))
+STDOUT.flush
+STDOUT.write JSON.generate(u(STDIN.gets.split.collect {|i| c(i)}))
 end
+
