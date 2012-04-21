@@ -4,9 +4,9 @@ def c(t)
 t.downcase.gsub('/','').gsub('(','').gsub(')','').gsub('.','').gsub(';','').gsub(':','').gsub(',','').gsub('?',' ?').gsub('!',' !').gsub('-',' - ')
 end
 @i={}
-f.each_line do |line|
-i = line.index(':')
-@i[line[0..i-2]] = c(line[i+2..-2])
+f.each do |l|
+i = l.index(':')
+@i[l[0..i-2]] = c(l[i+2..-2])
 end
 def u(m)
 s = []
