@@ -22,6 +22,6 @@ end
 while true
 print '>'
 STDOUT.flush
-STDOUT.write JSON.generate(u(STDIN.gets.split.collect {|i| c(i)}))
+STDOUT.write JSON.generate(u(STDIN.gets.split))
 end
 
