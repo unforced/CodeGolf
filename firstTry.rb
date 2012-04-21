@@ -1,7 +1,7 @@
 require 'json'
 f = open(ARGV[0])
 def c(t)
-t.downcase.gsub(/[\\(\\)\\.:,;]/,'').gsub('?',' ?').gsub('!',' !').gsub('-',' - ')
+t.downcase.gsub('/','').gsub('(','').gsub(')','').gsub('.','').gsub(';','').gsub(':','').gsub(',','').gsub('?',' ?').gsub('!',' !').gsub('-',' - ')
 end
 @i={}
 f.each_line do |line|
