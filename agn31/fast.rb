@@ -22,8 +22,8 @@ end
 @index2 = {}
 @index.each_key do |key|
 	ngrams = []
-	key.length.times do |i|
-		i.upto(key.length-1) do |j|
+	(key.length-2).times do |i|
+		(i+2).upto(key.length-1) do |j|
 			ngrams << key[i..j]
 		end
 	end
