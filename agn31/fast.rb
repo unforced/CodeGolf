@@ -33,17 +33,28 @@ end
 	end
 end
 puts Time.now-clock
+def intersection(x)
+	m=nil
+	x.each do |q|
+		m||=q
+		m=m&q
+	end
+	m
+end
 def lookup(words)
-	values = []
+	valuelist = []
 	words.each do |word|
+		word_values = []
 		if @index2[word]
 			@index2[word].each do |key|
-				values.concat(@index[key])
+				word_values.concat(@index[key])
 			end
 		end
+		valuelist << word_values
 	end
-	values.uniq
+	intersection(valuelist)
 end
+
 while true
 	print '>'
 	STDOUT.flush
