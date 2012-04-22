@@ -1,8 +1,5 @@
 #Reverse Index
 require 'json'
-def clean(text)
-	text.downcase.gsub(/[\(\)\.;:,\/]/,'').gsub(/[\?!-]/,' ')
-end
 file = open(ARGV[0])
 clock = Time.now
 @index = {}
@@ -10,8 +7,7 @@ file.each_line do |line|
 	splitSpot = line.index(':')
 	key = line[0..splitSpot-2]
 	value = line[splitSpot+2..-1]
-	value = clean(value)
-	value.split.each do |word|
+	value.downcase.gsub(/[\(\)\.;:,\/]/,'').gsub(/[\?!-]/,' ').split.each do |word|
 		@index[word] ||= []
 		@index[word] << key
 	end
