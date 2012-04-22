@@ -1,7 +1,7 @@
 require 'json'
 f = open(ARGV[0])
 def c(t)
-t.downcase.gsub('/','').gsub('(','').gsub(')','').gsub('.','').gsub(';','').gsub(':','').gsub(',','').gsub('?',' ?').gsub('!',' !').gsub('-',' - ')
+t.downcase.gsub(/[\(\)\.;:,\/]/,'').gsub(/[\?!-]/,' ')
 end
 @i={}
 f.each do |l|
@@ -19,7 +19,7 @@ s << k if g
 end
 s
 end
-while true
+while 1
 print '>'
 STDOUT.flush
 STDOUT.write JSON.generate(u(STDIN.gets.split))
